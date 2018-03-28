@@ -1,0 +1,4 @@
+Alignments before removing 5p clipping	1070511	100.00
+Removed 5p clipped [positive strand]:	30845	2.88133
+Removed 5p clipped [negative strand]:	31299	2.92374
+Total after removing 5p clipped:	1008367	94.1949

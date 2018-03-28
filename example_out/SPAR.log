@@ -1,0 +1,19 @@
+Mar 28 16:47:08 ..... Mapping reads
+Mar 28 16:47:24 ..... Removing reads trimmed at 5p
+Mar 28 16:47:31 ..... Sorting filtered SAM
+Mar 28 16:47:34 ..... Hard-clipping filtered sorted BAM
+Mar 28 16:47:43 ..... Indexing BAM
+Mar 28 16:47:44 ..... Computing mapping stats
+Mar 28 16:49:37 ..... Mapping reads
+Mar 28 16:49:53 ..... Removing reads trimmed at 5p
+Mar 28 16:50:00 ..... Sorting filtered SAM
+Mar 28 16:50:03 ..... Hard-clipping filtered sorted BAM
+Mar 28 16:50:12 ..... Indexing BAM
+Mar 28 16:50:13 ..... Computing mapping stats
+Mar 28 16:52:18 ..... Mapping reads
+Mar 28 17:23:16 ..... Mapping reads
+Mar 28 17:23:32 ..... Removing reads trimmed at 5p
+Mar 28 17:23:39 ..... Sorting filtered SAM
+Mar 28 17:23:42 ..... Hard-clipping filtered sorted BAM
+Mar 28 17:23:51 ..... Indexing BAM
+Mar 28 17:23:52 ..... Computing mapping stats

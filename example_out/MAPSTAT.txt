@@ -1,0 +1,13 @@
+FASTQ reads:	500000	100
+Uniquely-mapped reads:	212027	42.4054
+Multi-mapped reads:	284287	56.8574
+Total mapped reads:	496314	99.2628
+Alignments before removing 5p clipping	1070511	100.00
+Removed 5p clipped [positive strand]:	30845	2.88133
+Removed 5p clipped [negative strand]:	31299	2.92374
+Total after removing 5p clipped:	1008367	94.1949
+Alignments [no soft clipping]	829865	82.2979
+Alignments [with soft clipping]	178502	17.7021
+Reads [no soft clipping]	408671	81.7342
+Reads [with soft clipping]	82224	16.4448
+Reads [all]:	490895	98.179
