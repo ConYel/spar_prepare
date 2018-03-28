@@ -16,9 +16,11 @@ prepare_BAM_and_bigWigs_from_fastq.sh <trimmed.fastq.gz> <output-directory> <con
 to obtain bigWig and BAM files.
 
 Detailed instructions on
+
 a. how to prepare raw FASTQ file
 b. how to map reads to the genome and generate a BAM file
 c. how to generate BigWig files
+
 are provided below.
 
 ## Preparing reference genome (FASTA):
