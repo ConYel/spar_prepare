@@ -5,7 +5,7 @@ Raw sequencing reads are first trimmed to remove adapters used in library prepar
 
 For adapter trimming, use
 ```
-bash smrna_adapter_cut_new.sh <raw.fastq.gz>
+bash smrna_adapter_cut.sh <raw.fastq.gz>
 ```
 to obtain trimmed.fastq.gz 
 
@@ -128,7 +128,7 @@ g++ -O2 bam2bedgraph.cpp -o bam2bedgraph_interval -lhts
 
 To trim small RNA-seq adapters (small RNA adapters v1.0, v1.5, TruSeq):
 ```
-bash smrna_adapter_cut_new.sh raw.fastq.gz
+bash smrna_adapter_cut.sh raw.fastq.gz
 ```
 This will produce trimmed files in
 ```
