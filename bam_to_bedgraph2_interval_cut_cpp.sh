@@ -7,9 +7,17 @@ if [ ! -s ${INBAM} ]; then
   exit 1
 fi
 
+# select bam2bedgraph executable
+BAM2BEDGRAPH="`dirname $0`/bam2bedgraph_interval"
+OS="$OSTYPE"
+case "$OS" in
+  linux*) BAM2BEDGRAPH="`dirname $0`/bam2bedgraph_interval" ;;
+  darwin*) BAM2BEDGRAPH="`dirname $0`/bam2bedgraph_interval_macos" ;;
+  *) BAM2BEDGRAPH="`dirname $0`/bam2bedgraph_interval" ;;
+esac
+
 BAM=`basename ${INBAM}`
 BAMDIR=`dirname ${INBAM}`
-BAM2BEDGRAPH=`dirname $0`/bam2bedgraph_interval
 
 # directory where output will be saved
 # directory is either provided as input argument or is the same as the input BAM directory

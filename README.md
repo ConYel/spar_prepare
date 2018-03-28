@@ -1,3 +1,5 @@
+# SPAR
+
 ## Preparing reference genome (FASTA):
 
 ```

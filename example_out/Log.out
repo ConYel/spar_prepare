@@ -307,14 +307,14 @@ genomeSAsparseD               1     ~RE-DEFINED
 sjdbOverhang                  0     ~RE-DEFINED
 sjdbFileChrStartEnd           -        ~RE-DEFINED
 Genome version is compatible with current STAR version
-Started loading the genome: Wed Mar 28 17:23:16 2018
+Started loading the genome: Wed Mar 28 17:45:33 2018
 
 Read from SAindex: genomeSAindexNbases=14  nSAi=357913940
 Found genome in shared memory
 Using shared memory for genome. key=0x171af21f;   shmid=0
 nGenome=3151757312;  nSAbyte=23902811312
 GstrandBit=32   SA number of indices=5794620924
-Finished loading the genome: Wed Mar 28 17:23:16 2018
+Finished loading the genome: Wed Mar 28 17:45:33 2018
 
 Number of real (reference) chromosmes= 93
 1	chr1	249250621	0
@@ -421,12 +421,12 @@ Created thread # 2
 Created thread # 3
 Starting to map file # 0
 mate 1:   example-data.fastq.gz
-Thread #2 end of input stream, nextChar=-1
+Thread #1 end of input stream, nextChar=-1
 Completed: thread #3
-Completed: thread #2
-Completed: thread #0
 Completed: thread #1
+Completed: thread #0
 Joined thread # 1
+Completed: thread #2
 Joined thread # 2
 Joined thread # 3
 --genomeLoad=LoadAndKeep .
