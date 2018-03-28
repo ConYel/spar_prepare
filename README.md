@@ -1,4 +1,25 @@
-# SPAR
+# SPAR: Small RNA-seq Portal for Analysis of sequencing expeRiments
+
+This goal of this section is to provide guidelines on how to prepare raw sequencing files (n FASTQ format) for SPAR analysis.
+Raw sequencing reads are first trimmed to remove adapters used in library preparation/sequencing (smrna_adapter_cut.sh), then mapped to the genome (e.g., hg19) (run_star_smrna.sh) to obtain aligned reads in BAM format. BAM file is then converted to bigWig raw signal track files.
+
+For adapter trimming, use
+```
+bash smrna_adapter_cut_new.sh <raw.fastq.gz>
+```
+to obtain trimmed.fastq.gz 
+
+To prepare bigWig/BAM files for use with [SPAR webserver](https://www.lisanwanglab.org/SPAR)
+```
+prepare_BAM_and_bigWigs_from_fastq.sh <trimmed.fastq.gz> <output-directory> <config-file>
+```
+to obtain bigWig and BAM files.
+
+Detailed instructions on
+a. how to prepare raw FASTQ file
+b. how to map reads to the genome and generate a BAM file
+c. how to generate BigWig files
+are provided below.
 
 ## Preparing reference genome (FASTA):
 
@@ -116,7 +137,7 @@ raw.fastq.trimmed.gz.
 
 ## Preparing bigWig and BAM files from trimmed FASTQ
 
-To prepare bigWig files and BAM from the example FASTQ gzipped file:
+To prepare bigWig files and BAM from the example trimmed and gzipped FASTQ file:
 ```
 bash prepare_BAM_and_bigWigs_from_fastq.sh example-data.fastq.gz test_out config.hg19.sh
 ```
