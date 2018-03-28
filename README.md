@@ -18,7 +18,9 @@ to obtain bigWig and BAM files.
 Detailed instructions on
 
 a. how to prepare raw FASTQ file
+
 b. how to map reads to the genome and generate a BAM file
+
 c. how to generate BigWig files
 
 are provided below.
