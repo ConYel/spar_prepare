@@ -1,0 +1,100 @@
+<h1>SPAR: Small RNA-seq Portal for Analysis of sequencing expeRiments</h1>
+<p>The goal of this tutorial is to provide guidelines on how to prepare raw sequencing files (n FASTQ format) for SPAR analysis.</p>
+<p>Raw sequencing reads are first trimmed to remove adapters used in library preparation/sequencing (<em>smrna_adapter_cut.sh</em>), then mapped to the genome (e.g., hg19) (<em>run_star_smrna.sh</em>) to obtain aligned reads in BAM format. BAM file is then converted to bigWig raw signal track files (<em>bedgraph_to_bigwig.sh</em>).</p>
+<p>Provided <em>prepare_BAM_and_bigWigs_from_fastq.sh</em> script automates these steps and can be used to prepare bigWig files for further analysis with <a href="https://www.lisanwanglab.org/SPAR">SPAR</a> webserver.</p>
+<p>For adapter trimming, use
+<code>bash smrna_adapter_cut.sh &lt;raw.fastq.gz&gt;</code>
+to obtain trimmed.fastq.gz </p>
+<p>To prepare bigWig/BAM files for use with <a href="https://www.lisanwanglab.org/SPAR">SPAR webserver</a>
+<code>prepare_BAM_and_bigWigs_from_fastq.sh &lt;trimmed.fastq.gz&gt; &lt;output-directory&gt; &lt;config-file&gt;</code>
+to obtain bigWig and BAM files.</p>
+<p>Detailed instructions on</p>
+<p>a. how to prepare raw FASTQ file</p>
+<p>b. how to map reads to the genome and generate a BAM file</p>
+<p>c. how to generate BigWig files</p>
+<p>are provided below.</p>
+<h2>Preparing reference genome (FASTA):</h2>
+<code>
+wget http://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.2bit</p>
+<p>wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/twoBitToFa</p>
+<p>chmod a+x twoBitToFa</p>
+<p>./twoBitToFa hg19.2bit hg19.fa
+</code>
+<h2>Preparing STAR index for the reference genome</h2>
+<code>
+mkdir -p hg19/star</p>
+<p>STAR --runMode genomeGenerate --genomeDir hg19/star --genomeFastaFiles hg19.fa --runThreadN 4
+</code>
+<h2>Setting up configuration file</h2>
+<p>Example configuration file is given in provided <em>config.hg19.sh</em> file:
+<code>
+<h1>SPAR config file</h1>
+<p>export HOMEDIR="${HOME}"</p>
+<h1>absolute path to the bin directory</h1>
+<p>export BINDIR="${HOMEDIR}/bin"</p>
+<h1>reference genome</h1>
+<p>export GENOMEBUILD=hg19</p>
+<h1>absolute path to the STAR genome index</h1>
+<p>export STAR="${BINDIR}/STAR_2.4.0j/bin/Linux_x86_64/STAR" # STAR
+export genomeDir="${HOMEDIR}/datasets/${GENOMEBUILD}/star/"  # STAR genome index
+export GENOMEFA="${HOMEDIR}/datasets/${GENOMEBUILD}/${GENOMEBUILD}.fa"</p>
+<h1>absolute path to pre-installed STAR, samtools, AWK, etc</h1>
+<p>export SAMTOOLS="${BINDIR}/samtools-1.2/samtools"
+export BEDTOOLS="${BINDIR}/bedtools-2.26/bedtools2/bin/bedtools"</p>
+<h1>UCSC tools</h1>
+<p>export BGTOBIGWIG="${BINDIR}/bedGraphToBigWig"
+export BEDTOBIGBED="${BINDIR}/bedToBigBed"</p>
+<h1>Adapter trimming</h1>
+<p>export CUTADAPT="${BINDIR}/cutadapt-1.8.1/bin/cutadapt"</p>
+<h1>mapping parameters for STAR</h1>
+<p>export maxMismatchCnt=0 # maximum number of genomic mismatches
+export maxMapCnt=100 # maximum number of places a read can map to
+export minMappedLength=14 # minimum <em>mapped</em> length
+export maxReadLength=44 # maximum read length
+export max5pClip=1 # maximum allowed 5' clip; all read with 5' clipping &gt; max will be discarded
+export keep5pClipped=0 # by default all reads clipped at 5' are excluded from analysis
+</code>
+Please set locations of the programs/tools in the config file to the locations in your system.</p>
+<h3>Download/install if necessary any missing programs/tools:</h3>
+<p>STAR
+<code>wget https://github.com/alexdobin/STAR/archive/2.5.4b.tar.gz</code></p>
+<p>UCSC tools
+<code>wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/bedGraphToBigWig</code></p>
+<p>Samtools
+<code>apt-get install samtools</code></p>
+<h2>Recompiling bam2bedgraph binary (if necessary)</h2>
+<h3>Linux:</h3>
+<p>Install htslib
+<code>wget https://github.com/samtools/htslib/releases/download/1.7/htslib-1.7.tar.bz2
+tar xjvf htslib-1.7.tar.bz2
+cd htslib-1.7
+make
+make install</code></p>
+<p>Compile bam2bedgraph:
+<code>g++ -O2 bam2bedgraph.cpp -o bam2bedgraph_interval -lhts</code></p>
+<h3>MAC OS:</h3>
+<code>
+brew install htslib</p>
+<p>g++ -O2 bam2bedgraph.cpp -o bam2bedgraph_interval -lhts
+</code>
+<h2>Trimming reads in FASTQ.gz</h2>
+<p>To trim small RNA-seq adapters (small RNA adapters v1.0, v1.5, TruSeq):
+<code>bash smrna_adapter_cut.sh raw.fastq.gz</code>
+This will produce trimmed files in
+<code>raw.fastq.trimmed.gz.</code></p>
+<h2>Preparing bigWig and BAM files from trimmed FASTQ</h2>
+<p>To prepare bigWig files and BAM from the example trimmed and gzipped FASTQ file:
+<code>bash prepare_BAM_and_bigWigs_from_fastq.sh example-data.fastq.gz test_out config.hg19.sh</code>
+Output files will be saved into <em>test_out</em> directory:
+<code>
+Mar 28 16:52:18 ..... Mapping reads
+Mar 28 16:52:18 ..... Started STAR run
+Mar 28 16:52:18 ..... Started mapping</p>
+<p>...</p>
+<p>bigWig files:
+Positive strand: test_out/raw.pos.bigWig
+Negative strand: test_out/raw.neg.bigWig</p>
+<p>BAM file:
+test_out/Aligned.out.filtered.hardClipped.sorted.bam
+</code>
+Expected outputs are included in the <em>example_out</em> directory.</p>
