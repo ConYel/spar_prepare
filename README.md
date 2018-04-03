@@ -139,7 +139,7 @@ bash smrna_adapter_cut.sh raw.fastq.gz
 ```
 This will produce trimmed files in
 ```
-raw.fastq.trimmed.gz.
+raw.fastq.trimmed.gz
 ```
 
 ## Preparing bigWig and BAM files from trimmed FASTQ
