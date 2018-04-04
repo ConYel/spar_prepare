@@ -164,3 +164,6 @@ BAM file:
 test_out/Aligned.out.filtered.hardClipped.sorted.bam
 ```
 Expected outputs are included in the *example_out* directory.
+
+## License
+SPAR is available for academic and nonprofit use for free ([MIT license](LICENSE.md)).
