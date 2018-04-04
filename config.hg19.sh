@@ -1,6 +1,6 @@
 # SPAR config file
 
-export HOMEDIR=/project/wang/pkuksa #"${HOME}"
+export HOMEDIR="${HOME}"
 
 #absolute path to the bin directory
 export BINDIR="${HOMEDIR}/bin"

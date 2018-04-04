@@ -43,7 +43,6 @@ smrna_ribo=AGATCGGAAGAGCACACGTCT
 #PCRrc=$( echo "${PCR}" | rev | tr ATCG TAGC )
 
 CUTADAPT=${CUTADAPT:-$(command -v cutadapt)}
-CUTADAPT=/home/pkuksa/.local/bin/cutadapt
 if [ ! -x "${CUTADAPT}" ]; then
   echo "ERROR: cutadapt is not found!"
   exit 1
