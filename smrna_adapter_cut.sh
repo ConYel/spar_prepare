@@ -8,7 +8,7 @@
 # 5’ TGGAATTCTCGGGTGCCAAGG
 
 FASTQ=$1 # compressed fastq.gz
-THREADS=${2:-0} # change threads
+THREADS=${2:-2} # change threads
 
 if [ $# -lt 1 ]; then
   echo "USAGE: $0 <in.fastq.gz>"
