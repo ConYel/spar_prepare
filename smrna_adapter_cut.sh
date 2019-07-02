@@ -8,6 +8,7 @@
 # 5’ TGGAATTCTCGGGTGCCAAGG
 
 FASTQ=$1 # compressed fastq.gz
+THREADS=${2:-0} # change threads
 
 if [ $# -lt 1 ]; then
   echo "USAGE: $0 <in.fastq.gz>"
@@ -65,7 +66,7 @@ MIN_ADAPTER_MATCH=6
 #Multi-core Cutadapt can only write to output files given by -o and -p.
 #This implies that the following command-line arguments are not compatible with multi-core: --untrimmed-output 
 
-${CUTADAPT} ${adapterOptionA} -o ${trimmed} -O ${MIN_ADAPTER_MATCH} -m ${MIN_TRIMMED_READ_LEN} -e ${MAX_ADAPTER_ERROR} -n 8 "${FASTQ}"  | tee -a ${log}
+${CUTADAPT} ${adapterOptionA} -o ${trimmed} -O ${MIN_ADAPTER_MATCH} -m ${MIN_TRIMMED_READ_LEN} -e ${MAX_ADAPTER_ERROR} --cores=${THREADS} -n 8 "${FASTQ}"  | tee -a ${log}
 
 echo "Trimmed reads: ${trimmed}"
 echo "Untrimmed reads: ${untrimmed}"
